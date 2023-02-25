@@ -1,0 +1,7 @@
+// simplify import statement
+{
+  "compilerOptions": {
+    "baseUrl": "src"
+  },
+  "include": ["src"]
+}
