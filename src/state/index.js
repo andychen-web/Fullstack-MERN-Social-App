@@ -44,3 +44,49 @@ const setPOSTS = (posts) => {
 };
 
 // reducers
+const authReducers = (state = initialState, action) => {
+  switch (action.type) {
+    case "SET_MODE":
+      return {
+        ...state,
+        mode: state.mode === "light" ? "dark" : "light",
+      };
+    case "SET_LOGIN":
+      return {
+        ...state,
+        user: action.payload.user,
+        token: action.payload.token,
+      };
+    case "SET_FRIENDS":
+      if (state.user) {
+        return {
+          ...state,
+          friends: action.payload.friends,
+        };
+      } else {
+        console.log("user friends do not exist");
+        return state;
+      }
+    case "SET_POSTS":
+      return {
+        ...state,
+        posts: action.payload.posts,
+      };
+    case "SET_POST":
+      const updatedPosts = state.posts.map((post) => {
+        if (post._id === action.payload.post._id) {
+          return action.payload.post;
+        }
+        return post;
+      });
+      return {
+        ...state,
+        posts: updatedPosts,
+      };
+    default:
+      return state;
+  }
+};
+
+export default authReducers;
+export { setMode, setFriends, setLogin, setLogout, setPOST, setPOSTS };
