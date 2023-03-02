@@ -44,7 +44,7 @@ const setPOSTS = (posts) => {
 };
 
 // reducers
-const authReducers = (state = initialState, action) => {
+const authReducer = (state = initialState, action) => {
   switch (action.type) {
     case "SET_MODE":
       return {
@@ -88,5 +88,5 @@ const authReducers = (state = initialState, action) => {
   }
 };
 
-export default authReducers;
+export default authReducer;
 export { setMode, setFriends, setLogin, setLogout, setPOST, setPOSTS };
