@@ -44,6 +44,9 @@ const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
     <Provider store={store}>
+      {/* persistStore(store) creates a Redux Persistor that saves 
+      and rehydrates app state; passed to PersistGate for rendering.
+      loading= {null} ensures the app doesn't display a loading screen while the persisted state is being retrieved*/}
       <PersistGate loading={null} persistor={persistStore(store)}>
         <App />
       </PersistGate>
