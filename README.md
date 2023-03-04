@@ -13,7 +13,7 @@ Users will be able to
 
 ### Built With
 
- [![React][React.js]][React-url]
+- ReactJS
 
 ## Getting Started with Create React App
 
