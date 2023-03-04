@@ -1,4 +1,21 @@
-# Getting Started with Create React App
+# About The Project
+
+![screenshot](https://fakeimg.pl/500/)
+
+Users will be able to
+- Create a profile and customize it with personal information, interests, and preferences
+- Browse and search for other users based on their profiles and interests
+- Follow other users and receive updates on their activity and content
+- Post and share own content, such as photos, videos, and status updates
+- Interact with other users by liking, commenting, and sharing their content
+- Receive notifications when other users interact with own content or send messages
+- Control privacy settings and choose who can see profile and content.
+
+### Built With
+
+* [![React][React.js]][React-url]
+
+## Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
