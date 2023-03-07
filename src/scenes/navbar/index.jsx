@@ -28,7 +28,6 @@ const Navbar = () => {
             }}
           />
         </Toolbar>
-
       </AppBar>
     </>
   );
