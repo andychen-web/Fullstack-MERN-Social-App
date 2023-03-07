@@ -2,11 +2,12 @@ import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import HomePage from "scenes/homePage";
 import LoginPage from "scenes/loginPage";
 import ProfilePage from "scenes/profile page";
-
+import Navbar from "scenes/navbar";
 function App() {
   return (
     <div className="app">
       <BrowserRouter>
+        <Navbar />
         <Routes>
           <Route path="/" element={LoginPage} />
           <Route path="/home" element={HomePage} />
