@@ -1,7 +1,7 @@
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import HomePage from "scenes/homePage";
 import LoginPage from "scenes/loginPage";
-import ProfilePage from "scenes/profile page";
+import ProfilePage from "scenes/profilePage";
 import Navbar from "scenes/navbar";
 function App() {
   return (
@@ -9,9 +9,9 @@ function App() {
       <BrowserRouter>
         <Navbar />
         <Routes>
-          <Route path="/" element={LoginPage} />
-          <Route path="/home" element={HomePage} />
-          <Route path="/profilePage/:userId" element={ProfilePage} />
+          <Route path="/" element={<LoginPage />} />
+          <Route path="/home" element={<HomePage />} />
+          <Route path="/profilePage/:userId" element={<ProfilePage />} />
         </Routes>
       </BrowserRouter>
     </div>
