@@ -1,5 +1,8 @@
+import useState from "react";
+import { useMediaQuery } from "@mui/material";
+
 const LoginPage = () => {
-  return <div></div>;
+  return <></>;
 };
 
 export default LoginPage;
