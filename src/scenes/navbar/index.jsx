@@ -39,18 +39,17 @@ const Navbar = () => {
 
   return (
     <>
-      <AppBar sx={{ background: "white" }}>
+      <AppBar>
         {isLargeScreen ? (
           <Toolbar
             sx={{
               bgcolor: "white",
-              display: "flex",
               justifyContent: "space-between",
               width: "95%",
             }}
           >
             {/* LOGO and Search Bar */}
-            <Box sx={{ display: "flex", alignItems: "center", width: "90%" }}>
+            <Box display="flex" alignItems="center" width="90%">
               <Link href={"/home"} underline="none">
                 <Typography
                   variant="h6"
@@ -176,7 +175,7 @@ const Navbar = () => {
               />
             </Box>
             {/* Nav Items */}
-            <Box sx={{ display: "flex", alignItems: "center" }}>
+            <Box display="flex" alignItems="center">
               <Message
                 sx={{
                   fontSize: "1rem",
