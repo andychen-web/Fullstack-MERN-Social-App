@@ -48,14 +48,10 @@ const Navbar = () => {
               width: "95%",
             }}
           >
-            {/* LOGO and Search Bar */}
+            {/* Large Screen: LOGO and Search Bar */}
             <Box display="flex" alignItems="center" width="90%">
               <Link href={"/home"} underline="none">
-                <Typography
-                  variant="h6"
-                  sx={{ color: "#42a5f5" }}
-                  fontWeight="bold"
-                >
+                <Typography variant="h6" color="#42a5f5">
                   FriendSphere
                 </Typography>
               </Link>
@@ -147,13 +143,9 @@ const Navbar = () => {
               justifyContent: "space-between",
             }}
           >
-            {/* LOGO and Search Bar */}
+            {/* Smaller Screen: LOGO and Search Bar */}
             <Box sx={{ display: "flex", alignItems: "center", width: "90%" }}>
-              <Typography
-                variant="h7"
-                sx={{ color: "#42a5f5" }}
-                fontWeight="bold"
-              >
+              <Typography fontWeight="500" color="#42a5f5">
                 FriendSphere
               </Typography>
               <TextField
