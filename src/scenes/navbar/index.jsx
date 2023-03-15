@@ -19,15 +19,13 @@ import {
   Box,
   Menu,
   MenuItem,
-  useMediaQuery,
   Link,
 } from "@mui/material";
 
-const Navbar = () => {
+const Navbar = ({ isLargeScreen }) => {
   const black = "#292e36";
   const beige = "#F3F3F3";
 
-  const isLargeScreen = useMediaQuery("(min-width: 700px)");
   // useSelector hook extracts the state from Redux store and get a slice of that state
   const user = useSelector((state) => state.user);
   // const fullName = `${user.firstName} ${user.lastName}`;
@@ -39,7 +37,11 @@ const Navbar = () => {
 
   return (
     <>
-      <AppBar>
+      <AppBar
+        sx={{
+          bgcolor: "white",
+        }}
+      >
         {isLargeScreen ? (
           <Toolbar
             sx={{
@@ -116,9 +118,9 @@ const Navbar = () => {
                   minHeight: "190px",
                   position: "absolute",
                   marginY: "50px",
-                  right: "-90vw",
+                  right: "0",
                   left: "unset",
-                  top: "-25vh",
+                  top: "-30vh",
                   transform: "translateX(90vw)",
                   transform: "translateY(-40vh)",
                 }}
@@ -199,7 +201,7 @@ const Navbar = () => {
                   marginY: "50px",
                   right: "0",
                   left: "unset",
-                  top: "-40vh",
+                  top: "-48vh",
                   transform: "translateX(0)",
                   transform: "translateY(-40vh)",
                 }}
