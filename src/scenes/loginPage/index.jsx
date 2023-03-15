@@ -1,5 +1,6 @@
 import useState from "react";
-import { useMediaQuery, Box, Button, Form } from "@mui/material";
+import { useMediaQuery, Box, Button, Typography } from "@mui/material";
+import Form from "./Form";
 
 const LoginPage = () => {
   const beige = "#F3F3F3";
@@ -21,12 +22,12 @@ const LoginPage = () => {
           height="50vh"
           fontSize=".8rem"
         >
-          <span>
-            Welcome to FriendSphere, where making friends is so easy!{" "}
-          </span>
-          <input type="text" placeholder="Email" />
-          <input type="text" placeholder="Password" />
-          <Button variant="standard"> Login</Button>
+          <Typography variant="h6">Welcome to FriendSphere!</Typography>
+          <Form>
+            <input type="text" placeholder="Email" />
+            <input type="text" placeholder="Password" />
+            <Button variant="standard"> Login</Button>
+          </Form>
         </Box>
       </Box>
     </Box>
