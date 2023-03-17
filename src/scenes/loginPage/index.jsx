@@ -1,9 +1,21 @@
-import useState from "react";
-import { useMediaQuery, Box, Button, Typography } from "@mui/material";
-import Form from "./Form";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { Box, Typography, Button } from "@mui/material";
+import LoginForm from "./LoginForm";
+import SignupForm from "./SignupForm";
 
-const LoginPage = () => {
+const LoginPage = ({ isLargeScreen }) => {
   const beige = "#F3F3F3";
+  const [toggleSignup, setToggleSignup] = useState(false);
+
+  const handleToggleSignup = () => {
+    setToggleSignup(!toggleSignup);
+  };
+  // Once the form is submitted, call handleLogin function to navigate to home page
+  const navigate = useNavigate();
+  const handleLogin = () => {
+    navigate("/home");
+  };
 
   return (
     <Box bgcolor={beige}>
@@ -18,16 +30,36 @@ const LoginPage = () => {
           textAlign="center"
           maxWidth="80%"
           bgcolor="white"
+          borderRadius="10px"
           width="50vw"
-          height="50vh"
+          maxHeight="95vh"
+          height="auto"
           fontSize=".8rem"
         >
-          <Typography variant="h6">Welcome to FriendSphere!</Typography>
-          <Form>
-            <input type="text" placeholder="Email" />
-            <input type="text" placeholder="Password" />
-            <Button variant="standard"> Login</Button>
-          </Form>
+          <Typography
+            variant={isLargeScreen ? "h6" : "body2"}
+            fontWeight="500"
+            pt="1rem"
+            textAlign="start"
+            px="2rem"
+          >
+            Welcome to FriendSphere!
+          </Typography>
+          {toggleSignup ? (
+            <>
+              <SignupForm />
+              <Button onClick={handleToggleSignup}>
+                Already have an account? Login here
+              </Button>
+            </>
+          ) : (
+            <>
+              <LoginForm />
+              <Button onClick={handleToggleSignup}>
+                Don't have an account? Sign up here
+              </Button>
+            </>
+          )}
         </Box>
       </Box>
     </Box>
