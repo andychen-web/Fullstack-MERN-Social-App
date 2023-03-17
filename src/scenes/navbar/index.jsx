@@ -52,11 +52,9 @@ const Navbar = ({ isLargeScreen }) => {
           >
             {/* Large Screen: LOGO and Search Bar */}
             <Box display="flex" alignItems="center" width="90%">
-              <Link href={"/home"} underline="none">
-                <Typography variant="h6" color="#42a5f5">
-                  FriendSphere
-                </Typography>
-              </Link>
+              <Typography variant="h6" color="#42a5f5">
+                FriendSphere
+              </Typography>
               <TextField
                 sx={{
                   margin: ".5rem",
