@@ -1,9 +1,12 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { Box, FormControl, Button, Input } from "@mui/material";
 // Form handles form input and submission.
 const LoginForm = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const navigate = useNavigate();
+  const [isAuth, setIsAuth] = useState(false);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -25,6 +28,12 @@ const LoginForm = () => {
       .catch((error) => {
         console.log(error);
       });
+    // auth test
+    setIsAuth(true);
+    // if successful auth, navigate to homepage
+    if (isAuth) {
+      navigate("/home");
+    }
   };
   return (
     <Box display="flex" flexDirection="column" px="2rem">
