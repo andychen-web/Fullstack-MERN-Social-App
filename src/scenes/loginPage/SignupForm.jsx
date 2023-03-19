@@ -2,16 +2,29 @@ import React, { useState } from "react";
 import { Box, FormControl, Button, Input } from "@mui/material";
 
 // Form handles form input and submission.
-const SignupForm = () => {
+  const SignupForm = ({ onSignupSuccess }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [location, setLocation] = useState("");
+  const [occupation, setOccupation] = useState("");
+  const [uploadImg, setUploadImg] = useState(null);
 
   const handleSubmit = (e) => {
     e.preventDefault();
     const formData = {
+      firstName: firstName,
+      lastName: lastName,
+      location: location,
+      occupation: occupation,
       email: email,
       password: password,
+      uploadImg: uploadImg,
     };
+    // For Test Only
+    onSignupSuccess();
+
     // make AJAX request to server
     fetch("/api/loginForm", {
       body: JSON.stringify(formData),
@@ -22,6 +35,8 @@ const SignupForm = () => {
       })
       .then((data) => {
         console.log(data);
+        // after successful sigup, call the callback function
+        // onSignupSuccess();
       })
       .catch((error) => {
         console.log(error);
@@ -34,8 +49,10 @@ const SignupForm = () => {
       {/* use "& childElement" syntax in MUI to select child elements */}
       <FormControl
         component="form"
-        // onSubmit={handleSubmit}
-        sx={{ "& input": { py: ".5rem", fontSize: ".7rem" } }}
+        onSubmit={handleSubmit}
+        sx={{
+          "& input": { py: ".5rem", fontSize: ".7rem" },
+        }}
       >
         <Box display="flex" justifyContent="space-between">
           <Input
@@ -45,12 +62,12 @@ const SignupForm = () => {
               outline: "1px solid lightgrey",
               borderRadius: "5px",
               height: "2rem",
-              my: ".3rem",
+              my: ".2rem",
               width: "47%",
             }}
             placeholder=" first name"
             onChange={(e) => {
-              setEmail(e.target.value);
+              setFirstName(e.target.value);
             }}
           />
           <Input
@@ -60,12 +77,12 @@ const SignupForm = () => {
               outline: "1px solid lightgrey",
               borderRadius: "5px",
               height: "2rem",
-              my: ".3rem",
+              my: ".2rem",
               width: "47%",
             }}
             placeholder=" last name"
             onChange={(e) => {
-              setEmail(e.target.value);
+              setLastName(e.target.value);
             }}
           />
         </Box>
@@ -76,11 +93,11 @@ const SignupForm = () => {
             outline: "1px solid lightgrey",
             borderRadius: "5px",
             height: "2rem",
-            my: ".3rem",
+            my: ".2rem",
           }}
           placeholder=" Location"
           onChange={(e) => {
-            setEmail(e.target.value);
+            setLocation(e.target.value);
           }}
         />
         <Input
@@ -90,13 +107,34 @@ const SignupForm = () => {
             outline: "1px solid lightgrey",
             borderRadius: "5px",
             height: "2rem",
-            my: ".3rem",
+            my: ".2rem",
           }}
           placeholder=" Occupation"
           onChange={(e) => {
-            setPassword(e.target.value);
+            setOccupation(e.target.value);
           }}
         />
+        <Button
+          variant="standard"
+          component="label"
+          sx={{
+            outline: "1px solid lightgrey",
+            height: "2rem",
+            mt: ".2rem",
+            mb: "-10px",
+          }}
+        >
+          Upload Image
+          <input
+            type="file"
+            hidden
+            accept="image/*"
+            onChange={(e) => {
+              setUploadImg(e.target.files[0]);
+            }}
+          />
+        </Button>
+
         <Input
           type="email"
           disableUnderline={true}
@@ -123,7 +161,7 @@ const SignupForm = () => {
         <Button
           onClick={handleSubmit}
           variant="contained"
-          sx={{ mt: "1rem", bgcolor: "#42a5f5" }}
+          sx={{ mt: ".3rem", bgcolor: "#42a5f5" }}
         >
           Sign up
         </Button>
