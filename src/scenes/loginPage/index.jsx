@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
 import { Box, Typography, Button } from "@mui/material";
 import LoginForm from "./LoginForm";
 import SignupForm from "./SignupForm";
@@ -10,11 +9,6 @@ const LoginPage = ({ isLargeScreen }) => {
 
   const handleToggleSignup = () => {
     setToggleSignup(!toggleSignup);
-  };
-  // Once the form is submitted, call handleLogin function to navigate to home page
-  const navigate = useNavigate();
-  const handleLogin = () => {
-    navigate("/home");
   };
 
   return (
@@ -32,14 +26,13 @@ const LoginPage = ({ isLargeScreen }) => {
           bgcolor="white"
           borderRadius="10px"
           width="50vw"
-          maxHeight="95vh"
           height="auto"
           fontSize=".8rem"
         >
           <Typography
             variant={isLargeScreen ? "h6" : "body2"}
             fontWeight="500"
-            pt="1rem"
+            pt=".5rem"
             textAlign="start"
             px="2rem"
           >
@@ -47,7 +40,7 @@ const LoginPage = ({ isLargeScreen }) => {
           </Typography>
           {toggleSignup ? (
             <>
-              <SignupForm />
+              <SignupForm onSignupSuccess={handleToggleSignup} />
               <Button onClick={handleToggleSignup}>
                 Already have an account? Login here
               </Button>
