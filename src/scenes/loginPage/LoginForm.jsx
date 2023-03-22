@@ -1,12 +1,14 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { Box, FormControl, Button, Input } from "@mui/material";
-// Form handles form input and submission.
+import AuthContext from "context/AuthContext";
+
 const LoginForm = () => {
+  // extract only the isLoggedIn property from the context object
+  const { isLoggedIn } = useContext(AuthContext);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
-  const [isAuth, setIsAuth] = useState(false);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -28,11 +30,11 @@ const LoginForm = () => {
       .catch((error) => {
         console.log(error);
       });
-    // auth test
-    setIsAuth(true);
-    // if successful auth, navigate to homepage
-    if (isAuth) {
+    if (isLoggedIn) {
       navigate("/home");
+    } else {
+      alert("Login failed, please try again");
+      navigate("/");
     }
   };
   return (
