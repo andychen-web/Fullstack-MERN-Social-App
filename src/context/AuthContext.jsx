@@ -1,8 +1,7 @@
 import React, { createContext, useState, useEffect } from "react";
-import LoginForm from "scenes/loginPage/LoginForm";
-const AuthContext = createContext();
+const AuthContext = React.createContext();
 
-const AuthContextProvider = () => {
+const AuthContextProvider = ({ children }) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   const getIsLoggedIn = () => {
@@ -17,13 +16,13 @@ const AuthContextProvider = () => {
       });
   };
 
-  useEffect(() => {
-    getIsLoggedIn();
-  }, []);
+  // useEffect(() => {
+  //   getIsLoggedIn();
+  // }, []);
 
   return (
     <AuthContext.Provider value={{ isLoggedIn, setIsLoggedIn, getIsLoggedIn }}>
-      <LoginForm />
+      {children}
     </AuthContext.Provider>
   );
 };
