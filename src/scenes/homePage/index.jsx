@@ -1,5 +1,12 @@
+import { Box } from "@mui/material";
+import UserWidget from "scenes/widgets/UserWidget";
+
 const HomePage = () => {
-  return <div sx={{ fontSize: "200px", color: "red" }}></div>;
+  return (
+    <Box>
+      <UserWidget></UserWidget>
+    </Box>
+  );
 };
 
 export default HomePage;
