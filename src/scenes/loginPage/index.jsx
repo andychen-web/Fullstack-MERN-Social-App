@@ -4,7 +4,6 @@ import LoginForm from "./LoginForm";
 import SignupForm from "./SignupForm";
 
 const LoginPage = ({ isLargeScreen }) => {
-  const beige = "#F3F3F3";
   const [toggleSignup, setToggleSignup] = useState(false);
 
   const handleToggleSignup = () => {
@@ -12,7 +11,7 @@ const LoginPage = ({ isLargeScreen }) => {
   };
 
   return (
-    <Box bgcolor={beige}>
+    <Box>
       <Box
         display="flex"
         justifyContent="center"
