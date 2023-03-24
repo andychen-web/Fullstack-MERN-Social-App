@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Box, FormControl, Button, Input } from "@mui/material";
 
 // Form handles form input and submission.
-  const SignupForm = ({ onSignupSuccess }) => {
+const SignupForm = ({ onSignupSuccess }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [firstName, setFirstName] = useState("");
@@ -11,36 +11,27 @@ import { Box, FormControl, Button, Input } from "@mui/material";
   const [occupation, setOccupation] = useState("");
   const [uploadImg, setUploadImg] = useState(null);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const formData = {
-      firstName: firstName,
-      lastName: lastName,
-      location: location,
-      occupation: occupation,
-      email: email,
-      password: password,
-      uploadImg: uploadImg,
+      firstName,
+      lastName,
+      location,
+      occupation,
+      email,
+      password,
+      uploadImg,
     };
-    // For Test Only
-    onSignupSuccess();
-
-    // make AJAX request to server
-    fetch("/api/loginForm", {
-      body: JSON.stringify(formData),
-      method: "POST",
-    })
-      .then((response) => {
-        return response.json();
-      })
-      .then((data) => {
-        console.log(data);
-        // after successful sigup, call the callback function
-        // onSignupSuccess();
-      })
-      .catch((error) => {
-        console.log(error);
+    try {
+      const res = await fetch("/api/loginForm", {
+        body: JSON.stringify(formData),
+        method: "POST",
       });
+      const data = res.json();
+      console.log(data);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
