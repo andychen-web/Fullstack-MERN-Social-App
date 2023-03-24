@@ -40,7 +40,7 @@ const LoginPage = ({ isLargeScreen }) => {
           </Typography>
           {toggleSignup ? (
             <>
-              <SignupForm onSignupSuccess={handleToggleSignup} />
+              <SignupForm />
               <Button onClick={handleToggleSignup}>
                 Already have an account? Login here
               </Button>

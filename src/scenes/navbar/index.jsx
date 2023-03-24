@@ -19,7 +19,6 @@ import {
   Box,
   Menu,
   MenuItem,
-  Link,
 } from "@mui/material";
 
 const Navbar = ({ isLargeScreen }) => {

@@ -13,8 +13,8 @@ const LoginForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const formData = {
-      email: email,
-      password: password,
+      email,
+      password,
     };
     try {
       const res = await fetch("/api/loginForm", {
@@ -24,7 +24,7 @@ const LoginForm = () => {
       const data = await res.json();
       console.log(data);
 
-        await getIsLoggedIn;
+      await getIsLoggedIn;
 
       if (isLoggedIn) {
         navigate("/home");
