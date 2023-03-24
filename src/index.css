@@ -11,4 +11,7 @@ body,
 
 body {
   overflow-x: hidden;
+  position: relative;
+  left: -5px;
+  background-color: #f3f3f3;
 }
