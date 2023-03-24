@@ -5,36 +5,35 @@ import AuthContext from "context/AuthContext";
 
 const LoginForm = () => {
   // extract only the isLoggedIn property from the context object
-  const { isLoggedIn } = useContext(AuthContext);
+  const { getIsLoggedIn, isLoggedIn } = useContext(AuthContext);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const formData = {
       email: email,
       password: password,
     };
-    // make AJAX request to server
-    fetch("/api/loginForm", {
-      body: JSON.stringify(formData),
-      method: "POST",
-    })
-      .then((response) => {
-        return response.json();
-      })
-      .then((data) => {
-        console.log(data);
-      })
-      .catch((error) => {
-        console.log(error);
+    try {
+      const res = await fetch("/api/loginForm", {
+        body: JSON.stringify(formData),
+        method: "POST",
       });
-    if (isLoggedIn) {
-      navigate("/home");
-    } else {
-      alert("Login failed, please try again");
-      navigate("/");
+      const data = await res.json();
+      console.log(data);
+
+        await getIsLoggedIn;
+
+      if (isLoggedIn) {
+        navigate("/home");
+      } else {
+        alert("Login failed, please try again");
+        navigate("/");
+      }
+    } catch (error) {
+      console.log(error);
     }
   };
   return (

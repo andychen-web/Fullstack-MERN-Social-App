@@ -1,24 +1,20 @@
-import React, { createContext, useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 const AuthContext = React.createContext();
 
 const AuthContextProvider = ({ children }) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
-  const getIsLoggedIn = () => {
-    fetch("/api/loginForm", {
+  const getIsLoggedIn = async () => {
+    const res = await fetch("/api/loginForm", {
       method: "GET",
-    })
-      .then((res) => {
-        return res.json();
-      })
-      .then((data) => {
-        setIsLoggedIn(data);
-      });
+    });
+    const data = await res.json();
+    setIsLoggedIn(data);
   };
 
-  // useEffect(() => {
-  //   getIsLoggedIn();
-  // }, []);
+  useEffect(() => {
+    getIsLoggedIn();
+  }, []);
 
   return (
     <AuthContext.Provider value={{ isLoggedIn, setIsLoggedIn, getIsLoggedIn }}>
