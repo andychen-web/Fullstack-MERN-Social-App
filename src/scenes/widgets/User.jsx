@@ -7,7 +7,7 @@ import EditIcon from "@mui/icons-material/Edit";
 import FlexBetween from "components/FlexBetween";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
 import ApartmentIcon from "@mui/icons-material/Apartment";
-const UserWidget = () => {
+const User = () => {
   const addFriend = () => {
     alert("add");
   };
@@ -73,4 +73,4 @@ const UserWidget = () => {
   );
 };
 
-export default UserWidget;
+export default User;
