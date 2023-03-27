@@ -5,6 +5,7 @@ const WidgetContainer = ({ children }) => {
   return (
     <Box
       sx={{
+        width: "25vw",
         padding: "1rem",
         paddingBottom: ".5rem",
         backgroundColor: "white",
