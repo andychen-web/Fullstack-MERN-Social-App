@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Box, Divider, Typography } from "@mui/material";
 import UserImg from "components/UserImg";
 import PersonAddIcon from "@mui/icons-material/PersonAdd";
@@ -7,7 +7,26 @@ import EditIcon from "@mui/icons-material/Edit";
 import FlexBetween from "components/FlexBetween";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
 import ApartmentIcon from "@mui/icons-material/Apartment";
+import TwitterIcon from "@mui/icons-material/Twitter";
+import LinkedInIcon from "@mui/icons-material/LinkedIn";
 const User = () => {
+  const [user, setUser] = useState(null);
+
+  const getUser = async () => {
+    try {
+      const res = await fetch("/api/user", { method: "GET" });
+      const data = await res.json();
+      const userName = data.name;
+      setUser(userName);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    getUser();
+  }, []);
+
   const addFriend = () => {
     alert("add");
   };
@@ -20,7 +39,7 @@ const User = () => {
       <FlexBetween>
         <Box display={"flex"}>
           <UserImg />
-          <Box pl=".8rem">userName</Box>
+          <Box pl=".8rem">{user}</Box>
         </Box>
         <PersonAddIcon
           sx={{ fontSize: "1.3rem", color: "grey" }}
@@ -49,7 +68,7 @@ const User = () => {
         <Typography variant="subtitle2">Social Profiles </Typography>
         <FlexBetween>
           <Box display="flex">
-            <img height={"20px"} src="/assets/twitter.png" alt="" />
+            <TwitterIcon sx={{ fontSize: "1.3rem", color: "grey" }} />
             <Box pl="1rem">Twitter</Box>
           </Box>
           <EditIcon
@@ -59,7 +78,7 @@ const User = () => {
         </FlexBetween>
         <FlexBetween>
           <Box display="flex">
-            <img height={"20px"} src="/assets/linkedin.png" alt="" />
+            <LinkedInIcon sx={{ fontSize: "1.3rem", color: "grey" }} />
             <Box pl="1rem">LinkedIn</Box>
           </Box>
           <EditIcon
