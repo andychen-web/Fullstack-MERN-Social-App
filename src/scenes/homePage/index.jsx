@@ -8,7 +8,7 @@ import User from "scenes/widgets/User";
 const HomePage = ({ isLargeScreen }) => {
   return (
     <Box
-      overflow={"hidden"}
+      overflowX={"hidden"}
       display={"flex"}
       flexDirection={isLargeScreen ? "row" : "column"}
       gap="1rem"

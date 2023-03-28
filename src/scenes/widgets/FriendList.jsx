@@ -19,7 +19,7 @@ const FriendList = () => {
 
   return (
     <WidgetContainer>
-      <Typography variant="subtitle2" sx={"fontWeight:500px"} pb="10px">
+      <Typography variant="subtitle2" sx={"fontWeight:500"} pb="10px">
         Friend List
       </Typography>
       {/* friend row */}
@@ -36,10 +36,10 @@ const FriendRow = ({ friend }) => {
       <Box height="1.5rem" display="flex" alignItems="center">
         <img src="" alt="friend-pic" />
         <Box display="flex" flexDirection="column" pl="1rem">
-          <Typography variant="body3" fontWeight={500}>
+          <Typography variant="subtitle1" fontWeight={500}>
             {friend.name}
           </Typography>
-          <Typography variant="body4" color="grey">
+          <Typography variant="subtitle2" color="grey">
             {friend.job}
           </Typography>
         </Box>
