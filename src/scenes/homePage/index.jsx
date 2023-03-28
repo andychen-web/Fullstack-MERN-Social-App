@@ -5,7 +5,7 @@ import MyPost from "scenes/widgets/MyPost";
 import Posts from "scenes/widgets/Posts";
 import User from "scenes/widgets/User";
 
-const HomePage = () => {
+const HomePage = (isLargeScreen) => {
   return (
     <Box display={"flex"} gap="1rem" px={"1rem"}>
       <User />
