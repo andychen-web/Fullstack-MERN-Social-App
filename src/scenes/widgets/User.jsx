@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Box, Divider, Typography } from "@mui/material";
 import UserImg from "components/UserImg";
-import PersonAddIcon from "@mui/icons-material/PersonAdd";
+import ManageAccountsIcon from "@mui/icons-material/ManageAccounts";
 import WidgetContainer from "components/WidgetContainer";
 import EditIcon from "@mui/icons-material/Edit";
 import FlexBetween from "components/FlexBetween";
@@ -27,9 +27,6 @@ const User = () => {
     getUser();
   }, []);
 
-  const addFriend = () => {
-    alert("add");
-  };
   const handleEdit = () => {
     alert("edit");
   };
@@ -41,9 +38,8 @@ const User = () => {
           <UserImg />
           <Box pl=".8rem">{user}</Box>
         </Box>
-        <PersonAddIcon
+        <ManageAccountsIcon
           sx={{ fontSize: "1.3rem", color: "grey" }}
-          onClick={addFriend}
         />
       </FlexBetween>
       <Divider />
