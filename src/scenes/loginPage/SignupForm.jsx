@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Box, FormControl, Button, Input } from "@mui/material";
 
 // Form handles form input and submission.
-const SignupForm = () => {
+const SignupForm = ({ isLargeScreen }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [firstName, setFirstName] = useState("");

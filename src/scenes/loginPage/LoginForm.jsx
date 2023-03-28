@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { Box, FormControl, Button, Input } from "@mui/material";
 import AuthContext from "context/AuthContext";
 
-const LoginForm = () => {
+const LoginForm = ({ isLargeScreen }) => {
   // extract only the isLoggedIn property from the context object
   const { getIsLoggedIn, isLoggedIn } = useContext(AuthContext);
   const [email, setEmail] = useState("");
@@ -37,7 +37,11 @@ const LoginForm = () => {
     }
   };
   return (
-    <Box display="flex" flexDirection="column" px="2rem">
+    <Box
+      display="flex"
+      flexDirection="column"
+      px={isLargeScreen ? "2rem" : "1rem"}
+    >
       {/* component="form" means that children components will be wrapped in an HTML <form> element */}
       {/* use "& childElement" syntax in MUI to select child elements */}
       <FormControl

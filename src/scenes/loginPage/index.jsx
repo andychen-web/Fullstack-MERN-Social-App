@@ -24,31 +24,37 @@ const LoginPage = ({ isLargeScreen }) => {
           maxWidth="80%"
           bgcolor="white"
           borderRadius="10px"
-          width="50vw"
-          height="auto"
+          maxHeight={toggleSignup ? "100%" : "55%"}
+          minHeight={isLargeScreen ? "80%" : "50%"}
           fontSize=".8rem"
         >
           <Typography
             variant={isLargeScreen ? "h6" : "body2"}
             fontWeight="500"
-            pt=".5rem"
+            pt=".8rem"
             textAlign="start"
-            px="2rem"
+            px={isLargeScreen ? "2rem" : "1rem"}
           >
             Welcome to FriendSphere!
           </Typography>
           {toggleSignup ? (
             <>
-              <SignupForm />
-              <Button onClick={handleToggleSignup}>
+              <SignupForm isLargeScreen={isLargeScreen} />
+              <Button
+                sx={{ fontSize: isLargeScreen ? "1rem" : ".7rem" }}
+                onClick={handleToggleSignup}
+              >
                 Already have an account? Login here
               </Button>
             </>
           ) : (
             <>
-              <LoginForm />
-              <Button onClick={handleToggleSignup}>
-                Don't have an account? Sign up here
+              <LoginForm isLargeScreen={isLargeScreen} />
+              <Button
+                sx={{ fontSize: isLargeScreen ? "1rem" : ".7rem" }}
+                onClick={handleToggleSignup}
+              >
+                Don't have an account? <br></br> Sign up here
               </Button>
             </>
           )}
