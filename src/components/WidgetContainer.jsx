@@ -1,11 +1,14 @@
+import { useMediaQuery } from "@mui/material";
 import { Box } from "@mui/system";
 import React from "react";
 
 const WidgetContainer = ({ children }) => {
+  const isLargeScreen = useMediaQuery("(min-width: 700px)");
+
   return (
     <Box
+      width={isLargeScreen ? "25vw" : "65vw"}
       sx={{
-        width: "25vw",
         maxHeight: "65vh",
         padding: "1rem",
         paddingBottom: ".5rem",
