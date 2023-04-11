@@ -4,8 +4,7 @@ import UserImg from "components/UserImg";
 import WidgetContainer from "components/WidgetContainer";
 import PersonRemoveIcon from "@mui/icons-material/PersonRemove";
 import React from "react";
-import { setFriends } from "state";
-import { store } from "state";
+import { setFriends, store } from "state";
 
 const Posts = () => {
   const addFriend = () => {

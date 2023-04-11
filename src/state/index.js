@@ -1,3 +1,5 @@
+import { configureStore } from "@reduxjs/toolkit";
+
 // initialState, with light/dark mode, user info, authentication token, array of posts
 const initialState = {
   mode: "light",
@@ -90,3 +92,6 @@ const authReducer = (state = initialState, action) => {
 
 export default authReducer;
 export { setMode, setFriends, setLogin, setLogout, setPOST, setPOSTS };
+export const store = configureStore({
+  reducer: authReducer,
+});
