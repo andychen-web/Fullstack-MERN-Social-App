@@ -56,28 +56,6 @@ const Navbar = ({ isLargeScreen }) => {
             >
               FriendSphere
             </Typography>
-            <TextField
-              sx={{
-                margin: ".5rem",
-                borderRadius: ".5rem",
-                overflow: "hidden",
-                background: beige,
-              }}
-              variant="standard"
-              InputProps={{
-                endAdornment: (
-                  <InputAdornment position="end">
-                    <Search
-                      sx={{
-                        fontSize: isLargeScreen ? "1rem" : ".9rem",
-                        color: black,
-                        cursor: "pointer",
-                      }}
-                    />
-                  </InputAdornment>
-                ),
-              }}
-            />
           </Box>
           {/* Nav Items */}
           <Box display="flex" alignItems="center">
@@ -94,13 +72,6 @@ const Navbar = ({ isLargeScreen }) => {
                 fontSize: isLargeScreen ? "1.5rem" : "1rem",
                 color: black,
                 paddingX: ".7rem",
-                cursor: "pointer",
-              }}
-            />
-            <Help
-              sx={{
-                fontSize: isLargeScreen ? "1.5rem" : "1rem",
-                color: black,
                 cursor: "pointer",
               }}
             />

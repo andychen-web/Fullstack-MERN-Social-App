@@ -12,20 +12,12 @@ const LoginPage = ({ isLargeScreen }) => {
 
   return (
     <Box>
-      <Box
-        display="flex"
-        justifyContent="center"
-        width="100vw"
-        height="100vh"
-        pt="100px"
-      >
+      <Box display="flex" justifyContent="center" width="100vw" pt="50px">
         <Box
           textAlign="center"
-          maxWidth="80%"
+          alignItems="center"
           bgcolor="white"
           borderRadius="10px"
-          maxHeight={toggleSignup ? "100%" : "55%"}
-          minHeight={isLargeScreen ? "80%" : "50%"}
           fontSize=".8rem"
         >
           <Typography
@@ -33,27 +25,26 @@ const LoginPage = ({ isLargeScreen }) => {
             fontWeight="500"
             pt=".8rem"
             textAlign="start"
-            px={isLargeScreen ? "2rem" : "1rem"}
+            px={"2rem"}
           >
             Welcome to FriendSphere!
           </Typography>
           {toggleSignup ? (
             <>
-              <SignupForm isLargeScreen={isLargeScreen} />
-              <Button
-                sx={{ fontSize: isLargeScreen ? "1rem" : ".7rem" }}
-                onClick={handleToggleSignup}
-              >
+              <SignupForm
+                isLargeScreen={isLargeScreen}
+                handleToggleSignup={handleToggleSignup}
+              />
+              <Button sx={{ fontSize: ".7rem" }} onClick={handleToggleSignup}>
                 Already have an account? Login here
               </Button>
             </>
           ) : (
             <>
-              <LoginForm isLargeScreen={isLargeScreen} />
-              <Button
-                sx={{ fontSize: isLargeScreen ? "1rem" : ".7rem" }}
-                onClick={handleToggleSignup}
-              >
+              <LoginForm
+                isLargeScreen={isLargeScreen}
+              />
+              <Button sx={{ fontSize: ".7rem" }} onClick={handleToggleSignup}>
                 Don't have an account? <br></br> Sign up here
               </Button>
             </>

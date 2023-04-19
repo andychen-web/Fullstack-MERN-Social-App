@@ -4,6 +4,7 @@ import FriendList from "scenes/widgets/FriendList";
 import MyPost from "scenes/widgets/MyPost";
 import Posts from "scenes/widgets/Posts";
 import User from "scenes/widgets/User";
+import { Outlet } from "react-router-dom";
 
 const HomePage = ({ isLargeScreen }) => {
   return (
@@ -23,6 +24,7 @@ const HomePage = ({ isLargeScreen }) => {
         <Advert />
         <FriendList />
       </Box>
+      <Outlet />
     </Box>
   );
 };

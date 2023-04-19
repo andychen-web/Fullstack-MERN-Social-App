@@ -1,85 +1,94 @@
-import React, { useState, useContext } from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Box, FormControl, Button, Input } from "@mui/material";
-import AuthContext from "context/AuthContext";
+import { Box, Button, TextField } from "@mui/material";
+import * as yup from "yup";
+import { Formik } from "formik";
 
-const LoginForm = ({ isLargeScreen }) => {
-  // extract only the isLoggedIn property from the context object
-  const { getIsLoggedIn, isLoggedIn } = useContext(AuthContext);
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+// 建立一個schema物件，用來定義輸入資料的結構和驗證規則
+const loginSchema = yup.object().shape({
+  email: yup.string().email("invalid email").required("required"),
+  password: yup.string().required("required"),
+});
+
+// 建立init formData 以免內容出現undefined或null導致表單無法送出
+const initialLoginValues = {
+  email: "",
+  password: "",
+};
+const LoginForm = () => {
+  const [loginFailMessage, setloginFailMessage] = useState("");
   const navigate = useNavigate();
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    const formData = {
-      email,
-      password,
-    };
-    try {
-      const res = await fetch("/api/loginForm", {
-        body: JSON.stringify(formData),
-        method: "POST",
-      });
-      const data = await res.json();
-      console.log(data);
-
-      await getIsLoggedIn;
-
-      if (isLoggedIn) {
-        navigate("/home");
-      } else {
-        alert("Login failed, please try again");
-        navigate("/");
-      }
-    } catch (error) {
-      console.log(error);
+  const login = async (values, onSubmitProps) => {
+    const loggedInResponse = await fetch("http://localhost:3001/auth/login", {
+      method: "POST",
+      // specify format is json for the server to correctly parse the request body
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(values),
+    });
+    const loggedIn = await loggedInResponse.json();
+    onSubmitProps.resetForm();
+    const failMessage = loggedIn.msg;
+    if (!failMessage) {
+      navigate("/home");
+    } else if (failMessage) {
+      setloginFailMessage(failMessage);
     }
   };
+
+  const handleFormSubmit = async (values, onSubmitProps) => {
+    await login(values, onSubmitProps);
+  };
+
   return (
-    <Box
-      display="flex"
-      flexDirection="column"
-      px={isLargeScreen ? "2rem" : "1rem"}
+    <Formik
+      onSubmit={handleFormSubmit}
+      initialValues={initialLoginValues}
+      validationSchema={loginSchema}
     >
-      {/* component="form" means that children components will be wrapped in an HTML <form> element */}
-      {/* use "& childElement" syntax in MUI to select child elements */}
-      <FormControl
-        component="form"
-        onSubmit={handleSubmit}
-        sx={{ "& input": { py: ".5rem" } }}
-      >
-        <Input
-          type="email"
-          disableUnderline={true}
-          sx={{
-            outline: "1px solid lightgrey",
-            borderRadius: "5px",
-            my: "1rem",
-          }}
-          placeholder=" Email"
-          onChange={(e) => {
-            setEmail(e.target.value);
-          }}
-        />
-        <Input
-          type="password"
-          disableUnderline={true}
-          sx={{ outline: "1px solid lightgrey", borderRadius: "5px" }}
-          placeholder=" Password"
-          onChange={(e) => {
-            setPassword(e.target.value);
-          }}
-        />
-        <Button
-          onClick={handleSubmit}
-          variant="contained"
-          sx={{ mt: "1rem", bgcolor: "#42a5f5" }}
-        >
-          Login
-        </Button>
-      </FormControl>
-    </Box>
+      {({
+        values,
+        errors,
+        touched,
+        handleBlur,
+        handleChange,
+        handleSubmit,
+      }) => (
+        <form>
+          <Box display="flex" flexDirection="column" mx="2rem">
+            <TextField
+              label="Email"
+              onBlur={handleBlur}
+              onChange={handleChange}
+              value={values.email}
+              name="email"
+              error={touched.email && errors.email}
+              helperText={touched.email && errors.email}
+              sx={{ mt: ".5rem" }}
+            />
+            <TextField
+              label="Password"
+              type="password"
+              onBlur={handleBlur}
+              onChange={handleChange}
+              value={values.password}
+              name="password"
+              error={touched.password && errors.password}
+              helperText={touched.password && errors.password}
+              sx={{ mt: ".5rem" }}
+            />
+            <Button
+              onClick={handleSubmit}
+              variant="contained"
+              sx={{ mt: "1rem", bgcolor: "#42a5f5" }}
+            >
+              Login
+            </Button>
+            <Box color="#dc3545">{loginFailMessage}</Box>
+          </Box>
+        </form>
+      )}
+    </Formik>
   );
 };
 

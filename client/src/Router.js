@@ -4,22 +4,31 @@ import LoginPage from "scenes/loginPage";
 import ProfilePage from "scenes/profilePage";
 import Navbar from "scenes/navbar";
 import useMediaQuery from "@mui/material/useMediaQuery";
+import { useState } from "react";
 
 function Router() {
-  const isLargeScreen = useMediaQuery("(min-width: 700px)");
-
+  const isLargeScreen = useMediaQuery("(min-width: 420px)");
   return (
     <BrowserRouter>
-      <Navbar isLargeScreen={isLargeScreen} />
       <Routes>
-        <Route
-          path="/home"
-          element={<HomePage isLargeScreen={isLargeScreen} />}
-        />
         <Route path="/" element={<LoginPage isLargeScreen={isLargeScreen} />} />
         <Route
+          path="/home"
+          element={
+            <>
+              <Navbar isLargeScreen={isLargeScreen} />
+              <HomePage isLargeScreen={isLargeScreen} />
+            </>
+          }
+        />
+        <Route
           path="/profilePage/:userId"
-          element={<ProfilePage isLargeScreen={isLargeScreen} />}
+          element={
+            <>
+              <Navbar isLargeScreen={isLargeScreen} />
+              <ProfilePage isLargeScreen={isLargeScreen} />
+            </>
+          }
         />
       </Routes>
     </BrowserRouter>
