@@ -4,7 +4,7 @@ const UserImg = ({ imgURL }) => {
   return (
     <Box>
       <img
-        src={`http://localhost:3001/assets/${imgURL}`}
+        src={`https://social-app-backend-3j7e.onrender.com/assets/${imgURL}`}
         alt="user"
         style={{
           width: "60px",

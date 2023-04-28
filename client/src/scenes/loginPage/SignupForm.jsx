@@ -41,7 +41,7 @@ const SignupForm = ({ isLargeScreen, handleToggleSignup }) => {
     formData.append("picturePath", values.picture.name);
 
     const savedUserResponse = await fetch(
-      "http://localhost:3001/auth/register",
+      "https://social-app-backend-3j7e.onrender.com/auth/register",
       {
         method: "POST",
         body: formData,

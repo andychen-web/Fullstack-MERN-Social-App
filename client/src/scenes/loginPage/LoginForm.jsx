@@ -23,12 +23,15 @@ const LoginForm = () => {
   const navigate = useNavigate();
 
   const login = async (values, onSubmitProps) => {
-    const loggedInResponse = await fetch("http://localhost:3001/auth/login", {
-      method: "POST",
-      // specify format is json for the server to correctly parse the request body
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(values),
-    });
+    const loggedInResponse = await fetch(
+      "https://social-app-backend-3j7e.onrender.com/auth/login",
+      {
+        method: "POST",
+        // specify format is json for the server to correctly parse the request body
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(values),
+      }
+    );
     const loggedIn = await loggedInResponse.json();
     onSubmitProps.resetForm();
     const failMessage = loggedIn.msg;
