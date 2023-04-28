@@ -6,7 +6,7 @@ import App from "./App";
 // This file uses the redux-persist package from npmjs.
 // https://www.npmjs.com/package/redux-persist
 
-import authReducer from "state";
+import authReducer from "./state";
 // create Redux store with predefined config
 import { configureStore } from "@reduxjs/toolkit";
 // use Provider to provide Redux store for all components
@@ -27,7 +27,7 @@ import storage from "redux-persist/lib/storage";
 import { PersistGate } from "redux-persist/integration/react";
 
 // add persistence to Redux store
-const persistConfig = { key: "root", storage };
+const persistConfig = { key: "root", storage, version: 1 };
 const persistedReducer = persistReducer(persistConfig, authReducer);
 // create a new Redux store using the persisted root reducer, based on tutorial from positronx.io
 const store = configureStore({
@@ -35,7 +35,7 @@ const store = configureStore({
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
       serializableCheck: {
-        ignoreActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+        ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
       },
     }),
 });
