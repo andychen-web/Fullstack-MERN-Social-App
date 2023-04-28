@@ -1,25 +1,18 @@
 import { Box } from "@mui/material";
-import React, { useEffect, useState } from "react";
 
-const UserImg = () => {
-  const [imgURL, setImgURL] = useState("");
-  const getUserImg = async () => {
-    try {
-      const res = await fetch("/api/asset/userImg");
-      const imgURL = await res.text();
-      setImgURL(imgURL);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-  useEffect(() => {
-    getUserImg();
-  }, []);
-
+const UserImg = ({ imgURL }) => {
   return (
     <Box>
-      <img src={imgURL} alt="user" style={{ width: "60px", height: "auto" }} />
+      <img
+        src={`http://localhost:3001/assets/${imgURL}`}
+        alt="user"
+        style={{
+          width: "60px",
+          objectFit: "cover",
+          borderRadius: "50%",
+          height: "60px",
+        }}
+      />
     </Box>
   );
 };
