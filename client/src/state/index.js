@@ -1,12 +1,14 @@
 import { configureStore } from "@reduxjs/toolkit";
 
-// initialState, with light/dark mode, user info, authentication token, array of posts
 const initialState = {
-  mode: "light",
-  user: null,
-  token: null,
-  posts: [],
+  user: {
+    firstName: "",
+    lastName: "",
+    picturePath: "",
+  },
+  token: "",
 };
+
 // actions
 const setMode = () => {
   return {
@@ -45,7 +47,7 @@ const setPOSTS = (posts) => {
   };
 };
 
-// reducers
+// reducer
 const authReducer = (state = initialState, action) => {
   switch (action.type) {
     case "SET_MODE":
