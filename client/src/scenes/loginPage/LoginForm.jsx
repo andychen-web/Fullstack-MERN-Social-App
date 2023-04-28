@@ -3,6 +3,8 @@ import { useNavigate } from "react-router-dom";
 import { Box, Button, TextField } from "@mui/material";
 import * as yup from "yup";
 import { Formik } from "formik";
+import { useDispatch } from "react-redux";
+import { setLogin } from "state";
 
 // 建立一個schema物件，用來定義輸入資料的結構和驗證規則
 const loginSchema = yup.object().shape({
@@ -17,6 +19,7 @@ const initialLoginValues = {
 };
 const LoginForm = () => {
   const [loginFailMessage, setloginFailMessage] = useState("");
+  const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const login = async (values, onSubmitProps) => {
@@ -30,7 +33,14 @@ const LoginForm = () => {
     onSubmitProps.resetForm();
     const failMessage = loggedIn.msg;
     if (!failMessage) {
+      dispatch(
+        setLogin({
+          user: loggedIn.user,
+          token: loggedIn.token,
+        })
+      );
       navigate("/home");
+      console.log(setLogin);
     } else if (failMessage) {
       setloginFailMessage(failMessage);
     }
