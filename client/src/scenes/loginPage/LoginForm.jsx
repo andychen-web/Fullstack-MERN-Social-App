@@ -40,7 +40,6 @@ const LoginForm = () => {
         })
       );
       navigate("/home");
-      console.log(setLogin);
     } else if (failMessage) {
       setloginFailMessage(failMessage);
     }
