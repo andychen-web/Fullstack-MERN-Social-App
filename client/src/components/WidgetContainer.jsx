@@ -9,7 +9,7 @@ const WidgetContainer = ({ children }) => {
     <Box
       width={isLargeScreen ? "25vw" : "65vw"}
       sx={{
-        maxHeight: "65vh",
+        maxHeight: "85vh",
         padding: "1rem",
         paddingBottom: ".5rem",
         backgroundColor: "white",
