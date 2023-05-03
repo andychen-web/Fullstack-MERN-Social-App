@@ -7,8 +7,9 @@ import User from "scenes/widgets/User";
 import { useSelector } from "react-redux";
 
 const HomePage = ({ isLargeScreen }) => {
+  const userInfo = useSelector((state) => state.user);
+  const picturePath = userInfo.picturePath;
 
-  const { _id, picturePath } = useSelector((state) => state.user.user);
   return (
     <Box
       overflowX={"hidden"}
@@ -17,8 +18,8 @@ const HomePage = ({ isLargeScreen }) => {
       gap="1rem"
       px={"1rem"}
     >
-      <User userID={_id} picturePath={picturePath} />
-      <Box display={"flex"} flexDirection={"column"} gap="2rem">
+      <User userInfo={userInfo} />
+      <Box display={"flex"} flexDirection={"column"} gap="1rem">
         <MyPost picturePath={picturePath} />
         <Posts />
       </Box>
