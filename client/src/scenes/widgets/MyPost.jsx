@@ -4,20 +4,52 @@ import UserImg from "components/UserImg";
 import WidgetContainer from "components/WidgetContainer";
 import ImageIcon from "@mui/icons-material/Image";
 import React, { useRef, useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { setPosts } from "state";
 
-const MyPost = () => {
+const MyPost = ({ picturePath }) => {
+  const [postText, setPostText] = useState("");
   const [uploadImg, setUploadImg] = useState(null);
-  const fileInputRef = useRef(null);
+  const token = useSelector((state) => state.user.token);
+  const { _id } = useSelector((state) => state.user.user);
 
-  const handlePost = () => {
-    // send props to the posts widget, need to send to backend or not?
+  const fileInputRef = useRef(null);
+  const dispatch = useDispatch();
+
+  const handlePost = async () => {
+    // try {
+    const formData = new FormData();
+    // server requires user id, post description, and img object
+    formData.append("userId", _id);
+    formData.append("description", postText);
+    formData.append("picture", uploadImg);
+    formData.append("picturePath", uploadImg.name);
+    const response = await fetch(
+      "https://social-app-backend-3j7e.onrender.com/posts",
+      {
+        method: "POST",
+        headers: { Authorization: `Bearer ${token}` },
+        body: formData,
+      }
+    );
+    const posts = await response.json();
+    // 將從後端取得的posts 使用setPosts更新，以actions的形式傳到Redux store
+    dispatch(setPosts({ posts }));
+    // 送出後，清空圖片和貼文欄位的內容
+    setUploadImg(null);
+    setPostText("");
+
+    // } catch (err) {
+    //   alert("posting failed");
+    //   console.log(err);
+    // }
   };
   return (
     <Box>
       <FormControl component="form" onSubmit={handlePost}>
         <WidgetContainer>
           <FlexBetween>
-            <UserImg />
+            <UserImg imgURL={picturePath} />
             <TextField
               sx={{
                 height: "2rem",
@@ -29,6 +61,8 @@ const MyPost = () => {
                 style: { fontSize: ".8rem", padding: ".5rem" },
               }}
               variant="standard"
+              onChange={(e) => setPostText(e.target.value)}
+              value={postText}
             />
           </FlexBetween>
           <Divider />
@@ -44,9 +78,12 @@ const MyPost = () => {
               }}
             >
               <ImageIcon sx={{ fontSize: "1.2rem", color: "grey" }}></ImageIcon>
-              Image
+              <label style={{ fontSize: ".3rem" }}>
+                {uploadImg ? uploadImg.name : "No file selected"}
+              </label>
               <input
                 type="file"
+                // id="fileInput"
                 hidden
                 ref={fileInputRef}
                 accept="image/*"
