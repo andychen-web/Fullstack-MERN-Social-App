@@ -6,7 +6,7 @@ const initialState = {
     lastName: "",
     picturePath: "",
   },
-  token: "",
+  token: null,
 };
 
 // actions
@@ -15,7 +15,7 @@ const setMode = () => {
     type: "SET_MODE",
   };
 };
-const setLogin = (user, token) => {
+const setLogin = ({ user, token }) => {
   return {
     type: "SET_LOGIN",
     payload: { user, token },
@@ -33,14 +33,14 @@ const setFriends = (friends) => {
   };
 };
 
-const setPOST = (post) => {
+const setPost = (post) => {
   return {
     type: "SET_POST",
     payload: { post },
   };
 };
 
-const setPOSTS = (posts) => {
+const setPosts = (posts) => {
   return {
     type: "SET_POSTS",
     payload: { posts },
@@ -93,7 +93,7 @@ const authReducer = (state = initialState, action) => {
 };
 
 export default authReducer;
-export { setMode, setFriends, setLogin, setLogout, setPOST, setPOSTS };
+export { setMode, setFriends, setLogin, setLogout, setPost, setPosts };
 export const store = configureStore({
   reducer: authReducer,
 });
