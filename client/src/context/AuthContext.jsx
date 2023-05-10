@@ -4,20 +4,23 @@ const AuthContext = React.createContext();
 const AuthContextProvider = ({ children }) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
-  const getIsLoggedIn = async () => {
-    const res = await fetch("/api/loginForm", {
-      method: "GET",
-    });
-    const data = await res.json();
-    setIsLoggedIn(data);
-  };
+  // const getIsLoggedIn = async () => {
+  //   const res = await fetch(
+  //     "https://social-app-backend-3j7e.onrender.com/auth/login",
+  //     {
+  //       method: "GET",
+  //     }
+  //   );
+  //   const data = await res.json();
+  //   setIsLoggedIn(data);
+  // };
 
-  useEffect(() => {
-    getIsLoggedIn();
-  }, []);
+  // useEffect(() => {
+  //   getIsLoggedIn();
+  // }, []);
 
   return (
-    <AuthContext.Provider value={{ isLoggedIn, setIsLoggedIn, getIsLoggedIn }}>
+    <AuthContext.Provider value={{ isLoggedIn, setIsLoggedIn }}>
       {children}
     </AuthContext.Provider>
   );

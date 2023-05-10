@@ -1,37 +1,35 @@
 import { useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
-import {
-  Search,
-  Message,
-  Notifications,
-  Help,
-  MoreVert,
-} from "@mui/icons-material";
+import { Message, Notifications, MoreVert } from "@mui/icons-material";
 
 import {
   IconButton,
   AppBar,
   Toolbar,
   Typography,
-  TextField,
-  InputAdornment,
   Box,
   Menu,
   MenuItem,
 } from "@mui/material";
+import { setLogout } from "state";
+import { useNavigate } from "react-router-dom";
 
 const Navbar = ({ isLargeScreen }) => {
   const black = "#292e36";
-  const beige = "#F3F3F3";
 
   // useSelector hook extracts the state from Redux store and get a slice of that state
   const user = useSelector((state) => state.user);
-  // const fullName = `${user.firstName} ${user.lastName}`;
-  const fullName = "exampleName";
+  const fullName = user.firstName + user.lastName;
   const [menuOpen, setMenuOpen] = useState(false);
-  const handleUserClick = () => {
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const handleMenuClick = () => {
     setMenuOpen(!menuOpen);
+  };
+  const logOut = () => {
+    dispatch(setLogout(true));
+    navigate("/");
   };
 
   return (
@@ -76,7 +74,7 @@ const Navbar = ({ isLargeScreen }) => {
               }}
             />
 
-            <IconButton onClick={handleUserClick}>
+            <IconButton onClick={handleMenuClick}>
               <MoreVert
                 sx={{
                   fontSize: isLargeScreen ? "1.5rem" : "1rem",
@@ -99,9 +97,9 @@ const Navbar = ({ isLargeScreen }) => {
               }}
               id="menu"
               open={menuOpen}
-              onClose={handleUserClick}
+              onClose={handleMenuClick}
             >
-              <MenuItem value={fullName} onClick={handleUserClick}>
+              <MenuItem value={fullName} onClick={handleMenuClick}>
                 <Typography
                   sx={{
                     fontSize: ".8rem",
@@ -110,8 +108,8 @@ const Navbar = ({ isLargeScreen }) => {
                   {fullName}
                 </Typography>
               </MenuItem>
-              <MenuItem sx={{ fontSize: ".8rem" }} onClick={handleUserClick}>
-                Logout
+              <MenuItem sx={{ fontSize: ".8rem" }} onClick={handleMenuClick}>
+                <Box onClick={logOut}>Logout</Box>
               </MenuItem>
             </Menu>
           </Box>

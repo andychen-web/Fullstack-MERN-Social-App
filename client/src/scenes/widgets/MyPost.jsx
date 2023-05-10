@@ -10,40 +10,47 @@ import { setPosts } from "state";
 const MyPost = ({ picturePath }) => {
   const [postText, setPostText] = useState("");
   const [uploadImg, setUploadImg] = useState(null);
-  const token = useSelector((state) => state.user.token);
-  const { _id } = useSelector((state) => state.user.user);
+  const token = useSelector((state) => state.token);
+  const { _id } = useSelector((state) => state.user);
 
   const fileInputRef = useRef(null);
   const dispatch = useDispatch();
 
   const handlePost = async () => {
-    // try {
-    const formData = new FormData();
-    // server requires user id, post description, and img object
-    formData.append("userId", _id);
-    formData.append("description", postText);
-    formData.append("picture", uploadImg);
-    formData.append("picturePath", uploadImg.name);
-    const response = await fetch(
-      "https://social-app-backend-3j7e.onrender.com/posts",
-      {
-        method: "POST",
-        headers: { Authorization: `Bearer ${token}` },
-        body: formData,
-      }
-    );
-    const posts = await response.json();
-    // 將從後端取得的posts 使用setPosts更新，以actions的形式傳到Redux store
-    dispatch(setPosts({ posts }));
-    // 送出後，清空圖片和貼文欄位的內容
-    setUploadImg(null);
-    setPostText("");
+    if (!postText && !uploadImg) {
+      alert("Please enter some text before posting.");
+      return;
+    }
 
-    // } catch (err) {
-    //   alert("posting failed");
-    //   console.log(err);
-    // }
+    try {
+      const formData = new FormData();
+      formData.append("userId", _id);
+      formData.append("description", postText);
+      if (uploadImg) {
+        formData.append("picture", uploadImg);
+        formData.append("picturePath", uploadImg.name);
+      }
+      const response = await fetch(
+        "https://social-app-backend-3j7e.onrender.com/posts",
+        // "https://social-app-backend-3j7e.onrender.com/assets/posts",
+        {
+          method: "POST",
+          headers: { Authorization: `Bearer ${token}` },
+          body: formData,
+        }
+      );
+      const posts = await response.json();
+      // 將從後端取得的posts 使用setPosts更新，以actions的形式傳到Redux store
+      dispatch(setPosts({ posts }));
+      // 送出後，清空圖片和貼文欄位的內容
+      setUploadImg(null);
+      setPostText("");
+    } catch (err) {
+      alert("posting failed");
+      console.log(err);
+    }
   };
+
   return (
     <Box>
       <FormControl component="form" onSubmit={handlePost}>
@@ -83,7 +90,6 @@ const MyPost = ({ picturePath }) => {
               </label>
               <input
                 type="file"
-                // id="fileInput"
                 hidden
                 ref={fileInputRef}
                 accept="image/*"

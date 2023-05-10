@@ -1,39 +1,71 @@
-import { Box } from "@mui/system";
-import FlexBetween from "components/FlexBetween";
-import UserImg from "components/UserImg";
-import WidgetContainer from "components/WidgetContainer";
-import PersonRemoveIcon from "@mui/icons-material/PersonRemove";
-import React from "react";
-import { setFriends, store } from "state";
+import React, { useEffect } from "react";
+import { setPosts } from "state";
+import { useDispatch, useSelector } from "react-redux";
+import Post from "./Post";
 
-const Posts = () => {
-  const addFriend = () => {
-    store.dispatch(setFriends({ name: "jack" }));
-    console.log(store.getState());
-    // save user info (name etc.) in state, use that state in friendlist widgets
+const Posts = ({ userId }) => {
+  const dispatch = useDispatch();
+  const token = useSelector((state) => state.token);
+  const posts = useSelector((state) => state.posts);
+
+  const fetchPosts = async () => {
+    try {
+      const response = await fetch(
+        // test 後端是否把資料存在localhost? api 改成localhost
+        // `https://social-app-backend-3j7e.onrender.com/posts/${userId}`,
+        `https://social-app-backend-3j7e.onrender.com/posts`,
+        {
+          method: "GET",
+          headers: { Authorization: `Bearer ${token}` },
+        }
+      );
+      // test 是否redux store 和 fetch 資料衝突，否
+      // const posts = await response.json();
+      const data = await response.json();
+      dispatch(setPosts(data));
+
+      // change  to this get no result
+      // dispatch(setPosts({ posts: data }));
+    } catch (error) {
+      console.log("Error fetching posts:", error);
+    }
   };
 
+  useEffect(() => {
+    fetchPosts();
+  }, [posts]);
+
   return (
-    <WidgetContainer>
-      <FlexBetween>
-        <Box display={"flex"}>
-          <UserImg />
-          <Box pl=".8rem">friendName</Box>
-        </Box>
-        <PersonRemoveIcon
-          onClick={addFriend}
-          sx={{
-            background: "hsl(200, 53%, 90%)",
-            color: "hsl(210, 80%, 65%)",
-            fontSize: ".8rem",
-            padding: "5px",
-            boxShadow: "5px",
-            borderRadius: "1rem",
-            cursor: "pointer",
-          }}
-        />
-      </FlexBetween>
-    </WidgetContainer>
+    <>
+      {Array.isArray(posts) &&
+        posts.map(
+          ({
+            _id,
+            userId,
+            firstName,
+            lastName,
+            description,
+            location,
+            userPicturePath,
+            picturePath,
+            comments,
+            likes,
+          }) => (
+            <Post
+              postUserId={userId}
+              key={_id}
+              postId={_id}
+              name={firstName + lastName}
+              location={location}
+              description={description}
+              userPicturePath={userPicturePath}
+              picturePath={picturePath}
+              likes={likes}
+              comments={comments}
+            />
+          )
+        )}
+    </>
   );
 };
 

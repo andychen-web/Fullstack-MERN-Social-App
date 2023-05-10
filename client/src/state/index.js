@@ -61,14 +61,20 @@ const authReducer = (state = initialState, action) => {
         user: action.payload.user,
         token: action.payload.token,
       };
+    case "SET_LOGOUT":
+      return {
+        ...state,
+        user: null,
+        token: null,
+      };
     case "SET_FRIENDS":
-      if (state.user) {
+      if (state.user.friends) {
         return {
           ...state,
           friends: action.payload.friends,
         };
       } else {
-        console.log("user friends do not exist");
+        console.error("user friends do not exist");
         return state;
       }
     case "SET_POSTS":
