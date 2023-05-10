@@ -8,6 +8,7 @@ import { useSelector } from "react-redux";
 
 const HomePage = ({ isLargeScreen }) => {
   const userInfo = useSelector((state) => state.user);
+  const { _id } = useSelector((state) => state.user);
   const picturePath = userInfo.picturePath;
 
   return (
@@ -25,7 +26,7 @@ const HomePage = ({ isLargeScreen }) => {
       </Box>
       <Box display={"flex"} flexDirection={"column"} gap="1rem">
         <Advert />
-        <FriendList />
+        <FriendList userId={_id} />
       </Box>
     </Box>
   );
