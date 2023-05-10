@@ -7,6 +7,7 @@ const FlexBetween = ({ children }) => {
       sx={{
         display: "flex",
         justifyContent: "space-between",
+        alignItems: "center",
         gap: "1rem",
         py: ".5rem",
       }}
