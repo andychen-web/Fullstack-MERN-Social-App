@@ -8,30 +8,40 @@ const Posts = ({ userId }) => {
   const token = useSelector((state) => state.token);
   const posts = useSelector((state) => state.posts);
 
+  // const fetchUserPosts = async () => {
+  //   try {
+  //     const response = await fetch(
+  //       `https://social-app-backend-3j7e.onrender.com/posts/${userId}/posts`,
+  //       {
+  //         method: "GET",
+  //         headers: { Authorization: `Bearer ${token}` },
+  //       }
+  //     );
+  //     const data = await response.json();
+  //     dispatch(setPosts(data));
+  //   } catch (error) {
+  //     console.log("Error fetching posts:", error);
+  //   }
+  // };
+
   const fetchPosts = async () => {
     try {
       const response = await fetch(
-        // test 後端是否把資料存在localhost? api 改成localhost
-        // `https://social-app-backend-3j7e.onrender.com/posts/${userId}`,
-        `https://social-app-backend-3j7e.onrender.com/posts`,
+        "https://social-app-backend-3j7e.onrender.com/posts",
         {
           method: "GET",
           headers: { Authorization: `Bearer ${token}` },
         }
       );
-      // test 是否redux store 和 fetch 資料衝突，否
-      // const posts = await response.json();
       const data = await response.json();
       dispatch(setPosts(data));
-
-      // change  to this get no result
-      // dispatch(setPosts({ posts: data }));
     } catch (error) {
       console.log("Error fetching posts:", error);
     }
   };
 
   useEffect(() => {
+    // fetchUserPosts();
     fetchPosts();
   }, [posts]);
 
