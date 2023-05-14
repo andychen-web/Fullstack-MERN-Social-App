@@ -13,7 +13,6 @@ const Post = ({
   name,
   description,
   userPicturePath,
-  picturePath,
   likes,
   comments,
   userId,
@@ -48,18 +47,6 @@ const Post = ({
         />
       </FlexBetween>
       <Box pb={".5rem"}>{description}</Box>
-      <Box display={"flex"} justifyContent={"start"}>
-        <img
-          src={`https://social-app-backend-3j7e.onrender.com/assets/${picturePath}`}
-          alt="postPic"
-          style={{
-            maxWidth: "10rem",
-            maxHeight: "9rem",
-            objectFit: "cover",
-            borderRadius: "10px",
-          }}
-        />
-      </Box>
     </WidgetContainer>
   );
 };
