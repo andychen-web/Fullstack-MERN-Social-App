@@ -15,7 +15,7 @@ const User = ({ userInfo }) => {
   const occupation = userInfo.occupation;
 
   return (
-    <WidgetContainer sx={{ height: "100px !important" }}>
+    <WidgetContainer>
       <FlexBetween>
         <Box display={"flex"} alignItems={"center"}>
           <UserImg imgURL={picturePath} />
