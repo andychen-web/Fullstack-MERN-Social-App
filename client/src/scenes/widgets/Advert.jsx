@@ -32,7 +32,7 @@ const Advert = () => {
 
   return (
     <WidgetContainer>
-      <Typography variant="subtitle2" sx={"fontWeight:500px"} pb="10px">
+      <Typography variant="subtitle2" fontWeight="500px" pb="10px">
         Sponsored
       </Typography>
       <Box borderRadius={"10px"} width="11rem" overflow="hidden">

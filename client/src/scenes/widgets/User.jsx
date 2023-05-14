@@ -59,7 +59,6 @@ const User = ({ userInfo }) => {
           </Box>
         </FlexBetween>
       </Box>
-      <Divider />
     </WidgetContainer>
   );
 };

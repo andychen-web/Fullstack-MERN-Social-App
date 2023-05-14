@@ -7,6 +7,7 @@ const initialState = {
     picturePath: "",
   },
   token: null,
+  friends: null,
 };
 
 // actions

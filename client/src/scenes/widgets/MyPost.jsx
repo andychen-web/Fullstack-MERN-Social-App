@@ -52,7 +52,7 @@ const MyPost = ({ picturePath }) => {
                 borderRadius: "1rem",
               }}
               InputProps={{
-                style: { fontSize: ".8rem", padding: ".5rem" },
+                style: { fontSize: ".8rem", padding: ".3rem" },
               }}
               variant="standard"
               onChange={(e) => setPostText(e.target.value)}
@@ -64,7 +64,6 @@ const MyPost = ({ picturePath }) => {
               display: "flex",
               alignItems: "center",
               justifyContent: "end",
-              cursor: "pointer",
             }}
           >
             <Button

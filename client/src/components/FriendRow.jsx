@@ -1,4 +1,4 @@
-import { Box, Typography } from "@mui/material";
+import { Box } from "@mui/material";
 import FlexBetween from "components/FlexBetween";
 import PersonRemoveIcon from "@mui/icons-material/PersonRemove";
 import React from "react";
@@ -12,11 +12,10 @@ const FriendRow = () => {
   const token = useSelector((state) => state.token);
   const userId = useSelector((state) => state.user._id);
 
-  const removeFriend = async (friendId) => {
-    console.log(friendId);
+  const addRemoveFriend = async (friendID) => {
     try {
       const response = await fetch(
-        `https://social-app-backend-3j7e.onrender.com/users/${userId}/${friendId}`,
+        `https://social-app-backend-3j7e.onrender.com/users/${userId}/${friendID}`,
         {
           method: "PATCH",
           headers: {
@@ -33,7 +32,7 @@ const FriendRow = () => {
   };
 
   return friends.map((friend) => (
-    <FlexBetween>
+    <FlexBetween key={friend._id}>
       <Box height="2rem" py=".5rem" display="flex" alignItems="center">
         <UserImg imgURL={friend.picturePath} />
         <Box pl=".8rem" fontSize={".9rem"}>
@@ -53,7 +52,7 @@ const FriendRow = () => {
           borderRadius: "1rem",
           cursor: "pointer",
         }}
-        onClick={() => removeFriend(friend._id)}
+        onClick={() => addRemoveFriend(friend._id)}
       />
     </FlexBetween>
   ));
