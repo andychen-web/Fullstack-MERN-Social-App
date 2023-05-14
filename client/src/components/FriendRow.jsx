@@ -31,6 +31,7 @@ const FriendRow = () => {
 //     }
 //   };
 
+  return (<Box> TEST</Box>)
 //   return friends.map((friend) => (
 //     <FlexBetween key={friend._id}>
 //       <Box height="2rem" py=".5rem" display="flex" alignItems="center">
