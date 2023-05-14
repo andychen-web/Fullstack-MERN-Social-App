@@ -29,7 +29,7 @@ const setLogout = () => {
 const setFriends = (friends) => {
   return {
     type: "SET_FRIENDS",
-    payload: { friends },
+    payload: friends,
   };
 };
 
