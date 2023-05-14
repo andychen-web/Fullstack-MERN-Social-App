@@ -10,7 +10,7 @@ import LinkedInIcon from "@mui/icons-material/LinkedIn";
 
 const User = ({ userInfo }) => {
   const picturePath = userInfo.picturePath;
-  const userName = userInfo.lastName + " " + userInfo.firstName;
+  const userName = userInfo.firstName + " " + userInfo.lastName;
   const location = userInfo.location;
   const occupation = userInfo.occupation;
 

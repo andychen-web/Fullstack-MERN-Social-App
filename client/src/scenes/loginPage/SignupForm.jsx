@@ -83,19 +83,6 @@ const SignupForm = ({ isLargeScreen, handleToggleSignup }) => {
           >
             <>
               <TextField
-                label="Last Name"
-                onChange={handleChange}
-                value={values.lastName}
-                name="lastName"
-                error={touched.lastName && errors.lastName}
-                helperText={touched.lastName && errors.lastName}
-                sx={{
-                  width: "70%",
-                  borderRadius: "5px",
-                  mt: ".3rem",
-                }}
-              />
-              <TextField
                 label="First Name"
                 onChange={handleChange}
                 value={values.firstName}
@@ -106,6 +93,19 @@ const SignupForm = ({ isLargeScreen, handleToggleSignup }) => {
                 sx={{
                   borderRadius: "5px",
                   width: "70%",
+                  mt: ".3rem",
+                }}
+              />
+              <TextField
+                label="Last Name"
+                onChange={handleChange}
+                value={values.lastName}
+                name="lastName"
+                error={touched.lastName && errors.lastName}
+                helperText={touched.lastName && errors.lastName}
+                sx={{
+                  width: "70%",
+                  borderRadius: "5px",
                   mt: ".3rem",
                 }}
               />

@@ -47,7 +47,7 @@ const Posts = () => {
               postUserId={userId}
               key={_id}
               postId={_id}
-              name={firstName + lastName}
+              name={firstName + " " + lastName}
               location={location}
               description={description}
               userPicturePath={userPicturePath}

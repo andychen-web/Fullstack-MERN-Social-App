@@ -20,7 +20,7 @@ const Navbar = ({ isLargeScreen }) => {
 
   // useSelector hook extracts the state from Redux store and get a slice of that state
   const user = useSelector((state) => state.user);
-  const fullName = user.firstName + user.lastName;
+  const fullName = user.firstName + " " + user.lastName;
   const [menuOpen, setMenuOpen] = useState(false);
   const navigate = useNavigate();
   const dispatch = useDispatch();
