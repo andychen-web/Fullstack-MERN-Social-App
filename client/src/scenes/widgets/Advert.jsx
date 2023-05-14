@@ -35,7 +35,7 @@ const Advert = () => {
       <Typography variant="subtitle2" sx={"fontWeight:500px"} pb="10px">
         Sponsored
       </Typography>
-      <Box borderRadius={"10px"} width="12rem" overflow="hidden">
+      <Box borderRadius={"10px"} width="11rem" overflow="hidden">
         <img src={randomAdvert.image} width="100%" height="auto" alt="advert" />
       </Box>
       <FlexBetween>
