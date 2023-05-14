@@ -9,6 +9,7 @@ import PersonAddIcon from "@mui/icons-material/PersonAdd";
 const Post = ({
   key,
   postId,
+  location,
   name,
   description,
   userPicturePath,
@@ -28,6 +29,9 @@ const Post = ({
           <UserImg imgURL={userPicturePath} />
           <Box pl=".8rem" fontSize={".9rem"}>
             {name}
+            <Box fontSize={".8rem"} color="grey">
+              {location}
+            </Box>
           </Box>
         </Box>
         <PersonAddIcon
