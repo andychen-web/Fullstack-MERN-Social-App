@@ -22,25 +22,30 @@ const Post = ({
   const token = useSelector((state) => state.token);
   const { _id } = useSelector((state) => state.user);
   const friends = useSelector((state) => state.friends);
-  const isFriendPresent = friends.some((friend) => friend._id === postUserId);
+  const isFriendPresent =
+    friends && friends.some((friend) => friend._id === postUserId);
 
   const addRemoveFriend = async () => {
-    try {
-      // Make the PATCH request to the API endpoint
-      const response = await fetch(
-        `https://social-app-backend-3j7e.onrender.com/users/${_id}/${postUserId}`,
-        {
-          method: "PATCH",
-          headers: {
-            Authorization: `Bearer ${token}`,
-            "Content-Type": "application/json",
-          },
-        }
-      );
-      const data = await response.json();
-      dispatch(setFriends({ friends: data }));
-    } catch (error) {
-      console.error("Error adding friend:", error);
+    if (postUserId === _id) {
+      return;
+    } else {
+      try {
+        // Make the PATCH request to the API endpoint
+        const response = await fetch(
+          `https://social-app-backend-3j7e.onrender.com/users/${_id}/${postUserId}`,
+          {
+            method: "PATCH",
+            headers: {
+              Authorization: `Bearer ${token}`,
+              "Content-Type": "application/json",
+            },
+          }
+        );
+        const data = await response.json();
+        dispatch(setFriends({ friends: data }));
+      } catch (error) {
+        console.error("Error adding friend:", error);
+      }
     }
   };
 

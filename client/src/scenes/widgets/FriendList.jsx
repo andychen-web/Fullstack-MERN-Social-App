@@ -11,7 +11,6 @@ import FriendRow from "components/FriendRow";
 const FriendList = () => {
   const dispatch = useDispatch();
   const token = useSelector((state) => state.token);
-  const friends = useSelector((state) => state.friends);
   const userId = useSelector((state) => state.user._id);
 
   const getFriends = async () => {
