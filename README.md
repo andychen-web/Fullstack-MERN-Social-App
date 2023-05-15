@@ -5,8 +5,10 @@
 ![screenshot](https://media.discordapp.net/attachments/1098847298957619271/1107576943408324649/image.png?width=1206&height=567)
 
 測試帳號
-email:test234@gmail.com
-password:psw234
+<br>
+email: test234@gmail.com
+<br>
+password: psw234
 
 ### Built With
 
