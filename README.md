@@ -1,15 +1,12 @@
 # About The Project
 
-![screenshot](https://fakeimg.pl/500/)
+[Demo](https://fullstack-rwd-social-app.vercel.app/)  
 
-Users will be able to
-- Create a profile and customize it with personal information, interests, and preferences
-- Browse and search for other users based on their profiles and interests
-- Follow other users and receive updates on their activity and content
-- Post and share own content, such as photos, videos, and status updates
-- Interact with other users by liking, commenting, and sharing their content
-- Receive notifications when other users interact with own content or send messages
-- Control privacy settings and choose who can see profile and content.
+![screenshot](https://media.discordapp.net/attachments/1098847298957619271/1107576943408324649/image.png?width=1206&height=567)
+
+測試帳號
+email:test234@gmail.com
+password:psw234
 
 ### Built With
 
