@@ -1,9 +1,6 @@
 # About The Project
 
 [Demo](https://fullstack-rwd-social-app.vercel.app/)  
-
-![screenshot](https://media.discordapp.net/attachments/1098847298957619271/1107576943408324649/image.png?width=1206&height=567)
-
 測試帳號
 <br>
 email: test234@gmail.com
